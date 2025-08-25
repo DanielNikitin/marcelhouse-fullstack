@@ -1,0 +1,16 @@
+this._=this._||{};(function(_){var window=this;
+try{
+_._F_toggles_initialize=function(a){(typeof globalThis!=="undefined"?globalThis:typeof self!=="undefined"?self:this)._F_toggles__=a||[]};(0,_._F_toggles_initialize)([]);
+var d=function(a){throw a;};/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+var e=this||self;e._DumpException=d;for(var g=["_","_DumpException"],h=e,k;g.length&&(k=g.shift());)g.length||d===void 0?h[k]&&h[k]!==Object.prototype[k]?h=h[k]:h=h[k]={}:h[k]=d;var l=["/maps","/maps/","/maps/preview","/maps/preview/"],m="/maps/@ /maps/place/ /maps/search/ /maps/dir/ /maps/offline /maps/placelists/all /maps/preview/@ /maps/preview/place/ /maps/preview/search/ /maps/preview/dir/".split(" ");var p=function(a){return a.scope.caches.open("offline-v1").then(b=>{b.addAll(n(a))})},q=function(a,b){return(b.registerRouter||b.addRoutes)&&a.scope.navigator.userAgentData?.brands.some(c=>c.brand==="Chromium"&&+c.version>=117)},r=function(a,b){q(a,b)&&(a=[{condition:{not:{requestMode:"navigate"}},source:"network"},...l.concat(m.map(c=>`${c}*`)).map(c=>({condition:{urlPattern:{pathname:c},requestMode:"navigate"},source:"race-network-and-fetch-handler"})),{condition:{urlPattern:{pathname:"/*"}},source:"network"}],
+typeof b.addRoutes==="function"?b.addRoutes(a):b.registerRouter(a))},n=function(a){return[`/maps/preview/pwa/ttoffline.html?hl=${a.scope._SERVICE_WORKER_LANGUAGE||"en"}`]},u=function(a,b){return b.preloadResponse.then(c=>c?c:t(a,b)).catch(()=>t(a,b))},t=function(a,b){return a.scope.fetch(b.request).catch(()=>v(a))},v=function(a){return a.scope.caches.match(n(a)[0]).then(b=>b||null)},w=class{constructor(a){this.scope=a;this.scope.addEventListener("fetch",b=>{var c;(c=b)&&!(c=b.request.mode==="navigate")&&
+(c=b.request,c=c.method==="GET"&&c.headers.get("accept").includes("text/html"));c&&(c=this.scope._BFLAGS&1&&b.preloadResponse?u(this,b):t(this,b),b.respondWith(c))})}};var x=function(a,b){b={data:b,error:null};a.ports?.[0]?.postMessage(b)};
+new class{constructor(a){this.scope=self;const b=a(this.scope);this.scope.addEventListener("install",c=>{this.scope.skipWaiting();c.waitUntil(p(b));this.scope._BFLAGS&2&&r(b,c)});this.scope._BFLAGS&1&&this.scope.addEventListener("activate",c=>{this.scope.registration.navigationPreload&&c.waitUntil(this.scope.registration.navigationPreload.enable())});this.scope.addEventListener("message",c=>{var f=c.data.type;switch(f){case "kill":x(c,{type:f});this.scope.registration.unregister();break;case "fv":x(c,
+{type:f,value:1,flags:`${this.scope._BFLAGS}`});break;default:f={error:1},c.ports?.[0]?.postMessage(f)}})}}(a=>new w(a));
+}catch(e){_._DumpException(e)}
+})(this._);
+// Google Inc.
